@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аукцион "Оно тебе надо"</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="logo-link">
+                    <img src="{% static 'images/logo.png' %}" alt="Оно тебе надо" style="height: 60px; width: auto; display: block;">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="#lots" class="nav-link">Посмотреть лоты</a>
+                <a href="#about" class="nav-link">Об аукционе</a>
+                <a href="mailto:info@auction.ru" class="nav-link">info@auction.ru</a>
+                <a href="https://yandex.ru/maps/-/CLFFEA7V" target="_blank" class="nav-link">Адрес</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главная секция -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Оно тебе надо</h1>
+                <p class="hero-description">Уникальный аукцион редких и интересных предметов</p>
+                <button class="cta-button" id="bidButton">Сделать ставку</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция лотов -->
+    <section id="lots" class="lots-section">
+        <div class="container">
+            <h2 class="section-title">Лоты</h2>
+            <div class="lots-grid">
+                <div class="lot-card">
+                    <h3 class="lot-title">Редкая книга XIX века</h3>
+                    <p class="lot-description">Коллекционное издание с автографом автора</p>
+                    <div class="lot-price">Стартовая цена: 50,000 ₽</div>
+                </div>
+                <div class="lot-card">
+                    <h3 class="lot-title">Винтажные часы</h3>
+                    <p class="lot-description">Швейцарские часы 1950-х годов в отличном состоянии</p>
+                    <div class="lot-price">Стартовая цена: 120,000 ₽</div>
+                </div>
+                <div class="lot-card">
+                    <h3 class="lot-title">Картина современного художника</h3>
+                    <p class="lot-description">Уникальное произведение искусства</p>
+                    <div class="lot-price">Стартовая цена: 80,000 ₽</div>
+                </div>
+            </div>
+            <button class="view-more-btn">Посмотреть больше</button>
+        </div>
+    </section>
+
+    <!-- Секция об аукционе -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Об аукционе</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Наш аукцион специализируется на продаже уникальных и редких предметов. Мы предоставляем возможность приобрести эксклюзивные вещи, которые трудно найти в обычных магазинах.</p>
+                    <p>Все лоты проходят тщательную экспертизу и имеют сертификаты подлинности. Мы гарантируем качество и подлинность каждого предмета.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <h4>Экспертиза</h4>
+                        <p>Все лоты проверяются экспертами</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Гарантия</h4>
+                        <p>100% подлинность всех предметов</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Доставка</h4>
+                        <p>Безопасная доставка по всей России</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма для записи на тренировки -->
+    <section id="training" class="training-section">
+        <div class="container">
+            <h2 class="section-title">Сделать ставку</h2>
+            <div class="training-form-container">
+                <form class="training-form" id="trainingForm">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sport_type">Ваша ставка</label>
+                        <input type="number" id="bid" name="name" font-size: 14px required="">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="lot">Выберите лот *</label>
+                    <select id="lot" name="lot" required="">
+                        <option value="">-- Выберите лот --</option>
+                        <option value="Редкая Книга">Коллекционное издание с автографом автора   50,000 ₽</option>
+                        <option value="Винтажные часы">Швейцарские часы 1950-х  годов в отличном состоянии - 120,000 ₽</option>
+                        <option value="Картина современного художника">Уникальное произведение искусства - 80,000 ₽</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Оно тебе надо</h3>
+                    <p>Уникальный аукцион редких предметов</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#lots">Лоты</a></li>
+                        <li><a href="#about">Об аукционе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><a href="mailto:info@auction.ru">info@auction.ru</a></p>
+                    <p><a href="https://yandex.ru/maps/-/CLFFEA7V" target="_blank">Адрес</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Социальные сети</h4>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/" target="_blank" class="social-link">YouTube</a>
+                        <a href="https://www.instagram.com/" target="_blank" class="social-link">Instagram</a>
+                        <a href="https://www.facebook.com/" target="_blank" class="social-link">Facebook</a>
+                        <a href="https://vk.com/" target="_blank" class="social-link">VK</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Аукцион "Оно тебе надо". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

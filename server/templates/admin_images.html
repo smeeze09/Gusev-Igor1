@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление изображениями - Админка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tab {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .nav-tab:hover {
+            background: #2980b9;
+        }
+        
+        .nav-tab.active {
+            background: #e74c3c;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .submit-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #c0392b;
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .image-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f8f9fa;
+        }
+        
+        .image-info {
+            padding: 20px;
+        }
+        
+        .component-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #3498db;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .status-active {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-inactive {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .image-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .image-url {
+            font-size: 0.9rem;
+            color: #666;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+        
+        .image-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .refresh-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .refresh-btn:hover {
+            background: #2980b9;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖼️ Управление изображениями</h1>
+            <p>Добавление и редактирование изображений для компонентов сайта</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <a href="/admin/applications/" class="nav-tab">📋 Заявки</a>
+            <a href="/admin/images/" class="nav-tab active">🖼️ Изображения</a>
+            <a href="/admin/" class="nav-tab">⚙️ Django Admin</a>
+        </div>
+        
+        <button class="refresh-btn" onclick="location.reload()">🔄 Обновить</button>
+        
+        <!-- Форма добавления изображения -->
+        <div class="form-section">
+            <h2>➕ Добавить новое изображение</h2>
+            <form id="imageForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="component">Компонент</label>
+                        <select id="component" name="component" required>
+                            <option value="">Выберите компонент</option>
+                            <option value="hero">Главная секция (Hero)</option>
+                            <option value="lot1">Лот 1</option>
+                            <option value="lot2">Лот 2</option>
+                            <option value="lot3">Лот 3</option>
+                            <option value="about">Секция "Об аукционе"</option>
+                            <option value="training">Секция "Тренировки"</option>
+                            <option value="logo">Логотип</option>
+                            <option value="background">Фоновое изображение</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="image_url">Ссылка на изображение</label>
+                        <input type="url" id="image_url" name="image_url" required placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="alt_text">Альтернативный текст</label>
+                        <input type="text" id="alt_text" name="alt_text" required placeholder="Описание изображения">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="is_active" name="is_active" checked>
+                            <label for="is_active">Активно</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">💾 Сохранить изображение</button>
+            </form>
+        </div>
+        
+        <!-- Список изображений -->
+        <div class="form-section">
+            <h2>📋 Список изображений ({{ images|length }})</h2>
+            
+            {% if images %}
+                <div class="images-grid">
+                    {% for image in images %}
+                    <div class="image-card">
+                        <img src="{{ image.image_url }}" alt="{{ image.alt_text }}" class="image-preview" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuKEliBpbWFnZTwvdGV4dD48L3N2Zz4='">
+                        <div class="image-info">
+                            <span class="component-badge">{{ image.get_component_display }}</span>
+                            <span class="status-badge {% if image.is_active %}status-active{% else %}status-inactive{% endif %}">
+                                {% if image.is_active %}Активно{% else %}Неактивно{% endif %}
+                            </span>
+                            <div class="image-title">{{ image.alt_text }}</div>
+                            <div class="image-url">{{ image.image_url }}</div>
+                            <div class="image-date">Создано: {{ image.created_at|date:"d.m.Y H:i" }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-data">
+                    <h3>📭 Изображений пока нет</h3>
+                    <p>Добавьте первое изображение используя форму выше.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Обработка формы добавления изображения
+        document.getElementById('imageForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                component: formData.get('component'),
+                image_url: formData.get('image_url'),
+                alt_text: formData.get('alt_text'),
+                is_active: formData.has('is_active')
+            };
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Сохранение...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/images/create/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showMessage('Изображение успешно добавлено!', 'success');
+                    this.reset();
+                    // Обновляем страницу через 1 секунду
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    let errorMessage = 'Ошибка при добавлении изображения';
+                    if (result.errors) {
+                        const errors = Object.values(result.errors).flat();
+                        errorMessage = errors.join('\n');
+                    }
+                    showMessage(errorMessage, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Произошла ошибка при добавлении изображения', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Функция для получения CSRF токена
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        // Функция для показа сообщений
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+            messageDiv.textContent = message;
+            
+            const formSection = document.querySelector('.form-section');
+            formSection.insertBefore(messageDiv, formSection.firstChild);
+            
+            // Удаляем сообщение через 5 секунд
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #000 !important;
+    overflow-x: hidden;
+    background-color: #fff;
+}
+
+/* Принудительно делаем все тексты видимыми */
+h1, h2, h3, h4, h5, h6, p, span, div, a, li, td, th {
+    color: #333 !important;
+}
+
+/* Особые случаи для белого текста в hero секции */
+.hero-section h1,
+.hero-section p,
+.hero-section .hero-title,
+.hero-section .hero-description,
+.hero-section * {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Навигация должна быть темной */
+.navbar .logo-link {
+    color: #00060c !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+.navbar .nav-link {
+    color: #333 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Навигационная панель */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo .logo-link {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50 !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-logo .logo-link:hover {
+    color: #e74c3c;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #333 !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #e74c3c;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Главная секция */
+.hero-section {
+    min-height: 100vh;
+    background: url('./images/hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white !important;
+    padding-top: 70px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-description {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    color: white !important;
+    opacity: 0.9;
+}
+
+.cta-button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background: white;
+    color: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Секции */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #2c3e50 !important;
+}
+
+/* Секция лотов */
+.lots-section {
+    background: #ffffff;
+}
+
+.lots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.lot-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.lot-image {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+    margin-bottom: 15px !important;
+    display: block !important;
+}
+
+.lot-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.lot-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50 !important;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lot-title:hover {
+    color: #e74c3c;
+}
+
+.lot-description {
+    color: #666 !important;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.lot-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #e74c3c;
+}
+
+.view-more-btn {
+    display: block;
+    margin: 0 auto;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Секция об аукционе */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+.about-image {
+    width: 30%;
+    height: 300px;
+    background: #f0f2f5;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-size: cover;
+    background-position: center;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.about-inline-image {
+    display: block;
+    height: 300px;
+    object-fit: cover;
+    margin: 15px 0;
+    border-radius: 6px;
+}
+
+.about-features {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature {
+    text-align: center;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.feature p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Секция тренировок */
+.training-section {
+    background: #f8f9fa;
+}
+
+.training-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.training-form {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #e74c3c;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #c0392b;
+}
+
+/* Футер */
+.footer {
+    background: #ffffff;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 8px 0;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #34495e;
+    color: #bdc3c7;
+}
+
+/* Анимации футера */
+.footer {
+    /* плавное появление всего футера */
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.footer-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ступенчатая задержка для секций */
+.footer-content .footer-section:nth-child(1) { animation-delay: 0.05s; }
+.footer-content .footer-section:nth-child(2) { animation-delay: 0.15s; }
+.footer-content .footer-section:nth-child(3) { animation-delay: 0.25s; }
+.footer-content .footer-section:nth-child(4) { animation-delay: 0.35s; }
+
+.footer-bottom {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease 0.4s forwards;
+}
+
+/* динамика ссылок соцсетей */
+.social-link {
+    transform: translateX(0);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateX(4px);
+}
+
+/* уважение настроек уменьшенного движения */
+@media (prefers-reduced-motion: reduce) {
+    .footer,
+    .footer-section,
+    .footer-bottom,
+    .social-link {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .lots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .lot-card {
+        padding: 20px;
+    }
+
+    .training-form {
+        padding: 30px 20px;
+    }
+}
+
+/* Плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Анимации появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lot-card,
+.feature {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.lot-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.lot-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Дополнительная мобильная адаптация */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        z-index: 999;
+    }
+
+    .nav-link {
+        margin: 20px 0 !important;
+        font-size: 18px !important;
+    }
+
+    .hero-title {
+        font-size: 2.2rem !important;
+        margin-bottom: 20px;
+    }
+
+    .hero-description {
+        font-size: 1.1rem !important;
+        margin-bottom: 30px;
+    }
+
+    .cta-button {
+        padding: 12px 30px !important;
+        font-size: 16px !important;
+    }
+
+    .lot-image {
+        height: 180px !important;
+    }
+
+    .about-image {
+        height: 250px !important;
+    }
+
+    .training-form {
+        padding: 30px 20px !important;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+
+    .submit-btn {
+        padding: 12px 25px !important;
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .lot-image {
+        height: 150px !important;
+    }
+
+    .about-image {
+        height: 200px !important;
+    }
+
+    .training-form {
+        padding: 20px 15px !important;
+    }
+
+    .cta-button {
+        padding: 10px 25px !important;
+        font-size: 14px !important;
+    }
+}
