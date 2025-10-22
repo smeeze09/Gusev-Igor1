@@ -141,23 +141,23 @@ async function loadSports() {
             });
         }
     } catch (error) {
-        console.error('Ошибка при загрузке видов спорта:', error);
+        console.error('Ошибка при выбори лота :', error);
         // Если API недоступно, используем статический список
-        const staticSports = ['бокс', 'кикбоксинг', 'муай-тай', 'BJJ', 'вольная борьба', 'тхэквондо', 'ОФП'];
-        const select = document.getElementById('sport_type');
+        const staticSports = [];
+        const select = document.getElementById('lot');
         if (select) {
-            select.innerHTML = '<option value="">Выберите вид спорта</option>';
-            staticSports.forEach(sport => {
+            select.innerHTML = '<option value="">Выберите лот</option>';
+            staticSports.forEach(lot => {
                 const option = document.createElement('option');
-                option.value = sport;
-                option.textContent = sport.charAt(0).toUpperCase() + sport.slice(1);
+                option.value = lot;
+                option.textContent = lot.charAt(0).toUpperCase() + lot.slice(1);
                 select.appendChild(option);
             });
         }
     }
 }
 
-// Загружаем виды спорта при загрузке страницы
+// Загружаем лоты при загрузке страницы
 document.addEventListener('DOMContentLoaded', loadSports);
 
 // Эффект параллакса для героя
@@ -247,7 +247,7 @@ function validateForm(formData) {
     }
     
     if (!formData.sport_type) {
-        errors.push('Выберите лот');
+        errors.push('Выберите вид спорта');
     }
     
     return errors;
@@ -306,4 +306,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
