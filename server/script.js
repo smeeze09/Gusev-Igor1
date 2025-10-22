@@ -247,7 +247,7 @@ function validateForm(formData) {
     }
     
     if (!formData.sport_type) {
-        errors.push('Выберите вид спорта');
+        errors.push('Выберите лот');
     }
     
     return errors;
@@ -306,3 +306,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
